@@ -24,7 +24,7 @@ def get_questions_after_login():
 
     print(request_json)
 
-    if not (request_json['username'] == 'guest' and request_json['password'] == '15032014'):
+    if not (request_json['username'] == '<put the user here in prod>' and request_json['password'] == '<put the password here in prod>'):
         abort(401)
     else:
         questions = mongo.db.questions
