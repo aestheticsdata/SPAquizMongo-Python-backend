@@ -9,12 +9,11 @@ import random
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = 'quiz'
-app.config['MONGO_HOST']   = '1990computer.com'
+app.config['MONGO_HOST'] = '1990computer.com'
 
 CORS(app)
 
 mongo = PyMongo(app)
-
 
 
 @app.route('/login', methods=['POST'])
@@ -24,7 +23,8 @@ def get_questions_after_login():
 
     print(request_json)
 
-    if not (request_json['username'] == '<put the user here in prod>' and request_json['password'] == '<put the password here in prod>'):
+    if not (request_json['username'] == '<put the user here in prod>' and
+            request_json['password'] == '<put the password here in prod>'):
         abort(401)
     else:
         questions = mongo.db.questions
@@ -32,7 +32,9 @@ def get_questions_after_login():
         output = []
 
         for q in questions.find():
-            output.append({'question': q['question'], 'choices': q['choices'], 'correctAnswer': q['correctAnswer']})
+            output.append({'question': q['question'],
+                           'choices': q['choices'],
+                           'correctAnswer': q['correctAnswer']})
 
         shuffle(output)
 
@@ -41,12 +43,10 @@ def get_questions_after_login():
 
 def shuffle(a):
     for i in range(len(a)):
-        j= math.floor(random.random()*i)
-        tmp=a[i-1]
-        a[i-1]=a[j]
-        a[j]=tmp
-
-
+        j = math.floor(random.random()*i)
+        tmp = a[i-1]
+        a[i-1] = a[j]
+        a[j] = tmp
 
 
 if __name__ == '__main__':
