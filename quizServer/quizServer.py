@@ -43,9 +43,9 @@ def get_questions_after_login():
 
 def shuffle(a):
     for i in range(len(a)):
-        j = math.floor(random.random()*i)
-        tmp = a[i-1]
-        a[i-1] = a[j]
+        j = math.floor(random.random() * i)
+        tmp = a[i - 1]
+        a[i - 1] = a[j]
         a[j] = tmp
 
 
